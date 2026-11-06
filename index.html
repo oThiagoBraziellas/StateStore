@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StateStore</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top"><h1>StateStore</h1><p>A Redux-style store with middleware, memoised selectors and a time-travel debugger. Use the app on the left, then travel through its history on the right.</p></header>
+  <div class="layout">
+    <main class="app">
+      <section class="card">
+        <h2>Counter</h2>
+        <div class="row">
+          <button id="dec" type="button" aria-label="Decrement">&minus;</button>
+          <output id="count" class="big" aria-live="polite">0</output>
+          <button id="inc" type="button" aria-label="Increment">+</button>
+          <button id="add5" type="button">+5</button>
+          <button id="reset" type="button" class="ghost">Reset</button>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Todos</h2>
+        <form id="todo-form" class="row"><label class="sr-only" for="todo-input">New todo</label><input id="todo-input" placeholder="Add a todo" autocomplete="off"><button type="submit">Add</button></form>
+        <div class="row tabs">
+          <button type="button" data-filter="all">All</button><button type="button" data-filter="active">Active</button><button type="button" data-filter="done">Done</button>
+          <button id="clear-done" type="button" class="ghost">Clear done</button>
+        </div>
+        <ul id="todo-list" class="todos"></ul>
+        <p id="todo-stats" class="muted"></p>
+        <p id="recomputes" class="muted"></p>
+      </section>
+      <section class="card">
+        <h2>Async thunk</h2>
+        <div class="row"><button id="quote-btn" type="button">Load quote</button><span id="quote" class="muted"></span></div>
+      </section>
+    </main>
+    <aside class="debugger" aria-label="Time-travel debugger">
+      <div class="dbg-head">
+        <h2>Debugger</h2>
+        <span id="pos" class="muted"></span>
+      </div>
+      <div class="row">
+        <button id="back" type="button" aria-label="Step back">&larr;</button>
+        <input id="slider" type="range" min="0" max="0" value="0" aria-label="Position in history">
+        <button id="fwd" type="button" aria-label="Step forward">&rarr;</button>
+      </div>
+      <div class="row wrap">
+        <button id="play" type="button">Replay</button>
+        <button id="pause" type="button">Pause recording</button>
+        <button id="commit" type="button" class="ghost" title="Make the current state the new baseline">Commit</button>
+        <button id="dev-reset" type="button" class="ghost">Reset history</button>
+        <button id="export" type="button" class="ghost">Export</button>
+        <label class="file ghost">Import<input id="import" type="file" accept="application/json" hidden></label>
+      </div>
+      <ol id="log" class="log"></ol>
+      <h3>Diff for this action</h3>
+      <pre id="diff-view"></pre>
+      <h3>State</h3>
+      <pre id="state-view"></pre>
+    </aside>
+  </div>
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
